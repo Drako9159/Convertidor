@@ -3,9 +3,12 @@ import javax.swing.*;
 import Views.Primary;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDeepOceanIJTheme;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         // apply look & feel
+
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
             UIManager.setLookAndFeel(new FlatMaterialDeepOceanIJTheme());
@@ -142,5 +145,19 @@ public class Main {
             }
         }while(x == true);
     }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+
 }

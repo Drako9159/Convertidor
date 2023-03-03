@@ -1,22 +1,17 @@
 package Currency;
 import Toast.Toast;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
 public class Currency {
     JPanel pnlAmount, pnlOptions, actions;
     JTextField amount, result;
     JLabel lblAmount, lblOption0, lblOption1, lblResult;
-
     JButton handleConverter;
-    JComboBox box0, box1;
-    public void Currency(JFrame frame, JPanel panel){
-
+    //JComboBox box0, box1;
+    JComboBox<String> box0, box1;
+    public void currency(JFrame frame, JPanel panel){
         pnlAmount = new JPanel();
         pnlAmount.setBounds(0,10,360,40);
         pnlAmount.setLayout(null);
@@ -50,16 +45,13 @@ public class Currency {
 
         pnlOptions = new JPanel();
         pnlOptions.setBounds(0,30,360,80);
-        //pnlOptions.setBackground(new Color(133, 133, 133));
         pnlOptions.setLayout(null);
 
-        String[] options = {"MXN", "USD", "EUR", "JPY", "GBP", "KRW"};
-
-        box0 = new JComboBox(options);
+        box0 = new JComboBox<>(new String[] { "MXN", "USD", "EUR", "JPY", "GBP", "KRW" });
         box0.setBounds(80, 33, 80, 40);
         box0.setSelectedIndex(0);
 
-        box1 = new JComboBox(options);
+        box1 = new JComboBox<>(new String[] { "MXN", "USD", "EUR", "JPY", "GBP", "KRW" });
         box1.setBounds(200, 33, 80, 40);
         box1.setSelectedIndex(1);
 
@@ -76,27 +68,22 @@ public class Currency {
 
         actions = new JPanel();
         actions.setBounds(0, 110, 360, 80);
-
         actions.setLayout(null);
         actions.setVisible(true);
 
-
         handleConverter = new JButton("Convertir");
         handleConverter.setBounds(125, 0, 90, 30);
-        handleConverter.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(amount.getText().equals("")){
-                    frame.getContentPane().add(new Toast().AlertToast(
-                            "Ingrese una cantidad", "red"));
-                    frame.setVisible(true);
-                } else {
-                    String value0 = ""+box0.getSelectedItem();
-                    String value1 = ""+box1.getSelectedItem();
-                    Operator operator = new Operator();
-                    String conversion = operator.Operator(value0, value1, Double.parseDouble(amount.getText()));
-                    result.setText(conversion);
-                }
+        handleConverter.addActionListener(e -> {
+            if(amount.getText().equals("")){
+                frame.getContentPane().add(new Toast().AlertToast(
+                        "Ingrese una cantidad", "red"));
+                frame.setVisible(true);
+            } else {
+                String value0 = ""+box0.getSelectedItem();
+                String value1 = ""+box1.getSelectedItem();
+                OperatorCurrency operator = new OperatorCurrency();
+                String conversion = operator.operatorCurrency(value0, value1, Double.parseDouble(amount.getText()));
+                result.setText(conversion);
             }
         });
 
@@ -117,7 +104,5 @@ public class Currency {
         panel.setLayout(null);
         panel.setVisible(true);
         panel.setBounds(0,0,360,250);
-
-
     }
 }

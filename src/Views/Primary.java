@@ -2,7 +2,6 @@ package Views;
 import Currency.Currency;
 import Info.Info;
 import Temps.Temps;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,15 +10,15 @@ import java.awt.event.ActionListener;
 public class Primary extends JFrame{
     JFrame frame;
     JTextArea area;
-    JButton btnA, btnB;
     JMenuItem currency, temps, about;
     JMenu menu;
     JPanel primary, pnlCurrency, pnlInfo, pnlTemps;
     ListenButton listener;
-    public void Primary() {
+    public void primary() {
 
         String path = System.getProperty("user.dir");
-        // Create panel
+
+        // create frame
         frame = new JFrame();
         frame.setTitle("Conversor");
         frame.setSize(360, 260);
@@ -27,7 +26,7 @@ public class Primary extends JFrame{
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
 
-        // options
+        // options menu
         JMenuBar nav = new JMenuBar();
         menu = new JMenu("Menú");
         currency = new JMenuItem("Moneda");
@@ -41,10 +40,10 @@ public class Primary extends JFrame{
 
         // add icon app
         ImageIcon img = new ImageIcon(path+ "/src/assets/currency.png");
-        ImageIcon img2 = new ImageIcon(path+ "/src/assets/temps.png");
+        // ImageIcon img2 = new ImageIcon(path+ "/src/assets/temps.png");
         frame.setIconImage(img.getImage());
 
-        // front
+        // front message
         area = new JTextArea();
         area.setText("Conversor de Moneda y"+"\n" +"Temperatura");
         area.setEnabled(false);
@@ -52,27 +51,31 @@ public class Primary extends JFrame{
         area.setFont(new Font("FreeSans", Font.BOLD, 22));
         area.setBorder(BorderFactory.createLineBorder(new Color(40, 115, 206)));
 
-        // add padding
+        // add padding front message
         area.setBorder(BorderFactory.createCompoundBorder(area.getBorder(),
                 BorderFactory.createEmptyBorder(5,5,5,5)
         ));
 
+        // panel front
         primary = new JPanel();
         primary.add(area);
         primary.setLayout(null);
         primary.setBounds(0, 0, 360, 250);
         frame.getContentPane().add(primary);
 
+        // panel currency
         pnlCurrency = new JPanel();
         pnlCurrency.setLayout(null);
         pnlCurrency.setBounds(0, 0, 360, 250);
         frame.getContentPane().add(pnlCurrency);
 
+        // panel info
         pnlInfo = new JPanel();
         pnlInfo.setLayout(null);
         pnlInfo.setBounds(0, 0, 360, 250);
         frame.getContentPane().add(pnlInfo);
 
+        // panel temps
         pnlTemps = new JPanel();
         pnlTemps.setLayout(null);
         pnlTemps.setBounds(0, 0, 360, 250);
@@ -84,6 +87,7 @@ public class Primary extends JFrame{
         currency.addActionListener(listener);
         temps.addActionListener(listener);
         about.addActionListener(listener);
+
         // active frame
         frame.setVisible(true);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -96,25 +100,24 @@ public class Primary extends JFrame{
                 primary.setVisible(false);
                 pnlTemps.setVisible(false);
                 frame.setTitle("Acerca De");
-                Info info = new Info();
-                info.Info(pnlInfo);
+                new Info().info(pnlInfo);
             }
             if(e.getSource() == currency){
                 primary.setVisible(false);
                 pnlTemps.setVisible(false);
                 pnlInfo.setVisible(false);
                 frame.setTitle("Conversor de Moneda");
-                Currency currency = new Currency();
-                currency.Currency(frame, pnlCurrency);
+                new Currency().currency(frame, pnlCurrency);
             }
             if(e.getSource() == temps){
                 pnlCurrency.setVisible(false);
                 primary.setVisible(false);
                 pnlInfo.setVisible(false);
                 frame.setTitle("Conversor de Temperatura");
-                Temps temps = new Temps();
-                temps.Temps(frame, pnlTemps);
+                new Temps().temps(frame, pnlTemps);
             }
         }
+
     }
+
 }

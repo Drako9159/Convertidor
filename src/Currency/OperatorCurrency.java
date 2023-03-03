@@ -1,36 +1,34 @@
 package Currency;
-
 import java.text.DecimalFormat;
 
-public class Operator {
-    public String Operator(String from, String to, Double cantidad){
+public class OperatorCurrency {
+    public String operatorCurrency(String from, String to, Double cantidad){
         double value1 = Double.parseDouble(libraryValues(from));
         double value2 = Double.parseDouble(libraryValues(to));
         double result = value2 / value1 * cantidad;
         DecimalFormat df = new DecimalFormat("0.00");
 
-        String formatter = df.format(result) +" "+to;
-        return formatter;
+        return df.format(result) +" "+to;
     }
     public String libraryValues(String moneda){
         String[] values = {"18.11", "1", "0.94", "136.69", "0.84", "1305.68"};
-        switch (moneda){
-            case "MXN":{
+        switch (moneda) {
+            case "MXN" -> {
                 return values[0];
             }
-            case "USD":{
+            case "USD" -> {
                 return values[1];
             }
-            case "EUR":{
+            case "EUR" -> {
                 return values[2];
             }
-            case "JPY":{
+            case "JPY" -> {
                 return values[3];
             }
-            case "GBP":{
+            case "GBP" -> {
                 return values[4];
             }
-            case "KRW":{
+            case "KRW" -> {
                 return values[5];
             }
         }

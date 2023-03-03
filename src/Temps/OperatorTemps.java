@@ -1,32 +1,29 @@
 package Temps;
-
 import java.text.DecimalFormat;
-
 public class OperatorTemps {
-    public String OperatorTemps(String from, String to, Double cantidad){
-        double result = libraryValues(from, cantidad);
-        System.out.println(result);
+    public String operatorTemps(String from, String to, Double amount){
+        double result = libraryValues(from, amount);
         DecimalFormat df = new DecimalFormat("0.00");
-        String formatter = df.format(result) +" "+to;
+
+        String formatter;
+        formatter = df.format(result) +" "+to;
         return formatter;
     }
-    public Double libraryValues(String temp, Double cantidad){
-        switch (temp){
-            case "°F":{
-                return toC(cantidad);
+    public Double libraryValues(String temp, Double amount){
+        switch (temp) {
+            case "°F" -> {
+                return toC(amount);
             }
-            case "°C":{
-                return toF(cantidad);
+            case "°C" -> {
+                return toF(amount);
             }
         }
         return 0.2;
     }
     public Double toC(Double f){
-        double c = (f - 32) * 5/9;
-        return c;
+        return (f - 32) * 5/9;
     }
     public Double toF(Double c){
-        double f = (c * 9/5) + 32;
-        return f;
+        return (c * 9/5) + 32;
     }
 }

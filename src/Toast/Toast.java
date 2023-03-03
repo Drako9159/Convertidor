@@ -10,24 +10,21 @@ public class Toast{
         JPanel pnl = new JPanel();
         JLabel lbl = new JLabel();
 
-        System.out.println("error");
         lbl.setText(message);
 
-        if(color == "red"){
+        if(color.equals("red")){
             lbl.setForeground(Color.red);
-        } else if (color == "green"){
+        } else if (color.equals("green")){
             lbl.setForeground(Color.green);
         }
 
-
         pnl.setBounds(10,190,322,20);
         pnl.add(lbl);
-        pnl.setLayout(new FlowLayout(0));
+        pnl.setLayout(new FlowLayout(FlowLayout.LEFT));
         pnl.setVisible(true);
+
         // setTimeout
-        CompletableFuture.delayedExecutor(4, TimeUnit.SECONDS).execute(() -> {
-            pnl.setVisible(false);
-        });
+        CompletableFuture.delayedExecutor(4, TimeUnit.SECONDS).execute(() -> pnl.setVisible(false));
 
         pnl.setVisible(true);
         return pnl;

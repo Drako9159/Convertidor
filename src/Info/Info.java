@@ -8,7 +8,7 @@ import java.net.URI;
 
 public class Info extends Primary{
     JLabel lblGit, lblWeb, message, date;
-    public void Info(JPanel panel) {
+    public void info(JPanel panel) {
 
         message = new JLabel("Converter created by Antonio Jaramillo");
         message.setBounds(70,10,260,30);
@@ -40,8 +40,8 @@ public class Info extends Primary{
             public void mouseClicked(MouseEvent me){
                 try {
                     Desktop.getDesktop().browse(new URI("https://github.com/Drako9159"));
-                } catch (Exception e){
-                    System.out.println(e);
+                } catch (Exception ex){
+                    System.out.println(ex);
                 }
             }
         });
@@ -55,8 +55,8 @@ public class Info extends Primary{
             public void mouseClicked(MouseEvent me){
                 try {
                     Desktop.getDesktop().browse(new URI("https://www.drako.icu"));
-                } catch (Exception e){
-                    System.out.println(e);
+                } catch (Exception ex){
+                    System.out.println(ex);
                 }
             }
         });

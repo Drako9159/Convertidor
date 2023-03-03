@@ -7,26 +7,28 @@ import java.awt.event.MouseEvent;
 import java.net.URI;
 
 public class Info extends Primary{
-    JLabel lblGit, lblWeb, message;
-    public void Info(JFrame frame) {
-        frame.setTitle("Acerca De");
-        //frame.setVisible(true);
+    JLabel lblGit, lblWeb, message, date;
+    public void Info(JPanel panel) {
 
         message = new JLabel("Converter created by Antonio Jaramillo");
-        message.setBounds(70,20,260,30);
+        message.setBounds(70,10,260,30);
+
+        date = new JLabel("creation 03/03/2023");
+        date.setBounds(120,30,260,30);
 
         lblGit = new JLabel("github");
         lblGit.setText("<html> <a href=\" https://github.com/Drako9159 \">github</a> </html>");
-        lblGit.setBounds(160,40,200,30);
+        lblGit.setBounds(160,50,200,30);
 
         lblWeb = new JLabel("webpage");
         lblWeb.setText("<html> <a href=\" https://www.drako.icu \">webpage</a> </html>");
-        lblWeb.setBounds(155,60,200,30);
+        lblWeb.setBounds(155,70,200,30);
 
-        frame.add(message);
-        frame.add(lblGit);
-        frame.add(lblWeb);
-        frame.repaint();
+        panel.add(message);
+        panel.add(date);
+        panel.setVisible(true);
+        panel.add(lblGit);
+        panel.add(lblWeb);
 
         lblGit.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent me){

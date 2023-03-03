@@ -1,6 +1,8 @@
 package Views;
 import Currency.Currency;
 import Info.Info;
+import Temps.Temps;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,13 +14,11 @@ public class Primary extends JFrame{
     JButton btnA, btnB;
     JMenuItem currency, temps, about;
     JMenu menu;
-
-
+    JPanel primary, pnlCurrency, pnlInfo, pnlTemps;
     ListenButton listener;
     public void Primary() {
-        String path = System.getProperty("user.dir");
 
-        System.out.println(path);
+        String path = System.getProperty("user.dir");
         // Create panel
         frame = new JFrame();
         frame.setTitle("Conversor");
@@ -37,7 +37,6 @@ public class Primary extends JFrame{
         menu.add(temps);
         menu.add(about);
         nav.add(menu);
-
         frame.setJMenuBar(nav);
 
         // add icon app
@@ -57,19 +56,27 @@ public class Primary extends JFrame{
         area.setBorder(BorderFactory.createCompoundBorder(area.getBorder(),
                 BorderFactory.createEmptyBorder(5,5,5,5)
         ));
-        frame.add(area);
 
+        primary = new JPanel();
+        primary.add(area);
+        primary.setLayout(null);
+        primary.setBounds(0, 0, 360, 250);
+        frame.getContentPane().add(primary);
 
-        btnA = new JButton("Converson de moneda");
-        btnA.setBounds(10,30,260,40);
-        btnA.setBackground(Color.green);
-        btnB = new JButton("Conversor de temperatura");
-        btnB.setBounds(10,80,260,40);
-        btnB.setBackground(Color.yellow);
+        pnlCurrency = new JPanel();
+        pnlCurrency.setLayout(null);
+        pnlCurrency.setBounds(0, 0, 360, 250);
+        frame.getContentPane().add(pnlCurrency);
 
-        // add buttons on panel
-        // frame.getContentPane().add(btnA);
-        // frame.getContentPane().add(btnB);
+        pnlInfo = new JPanel();
+        pnlInfo.setLayout(null);
+        pnlInfo.setBounds(0, 0, 360, 250);
+        frame.getContentPane().add(pnlInfo);
+
+        pnlTemps = new JPanel();
+        pnlTemps.setLayout(null);
+        pnlTemps.setBounds(0, 0, 360, 250);
+        frame.getContentPane().add(pnlTemps);
 
         // actions listener
         listener = new ListenButton();
@@ -85,18 +92,28 @@ public class Primary extends JFrame{
     public class ListenButton implements ActionListener {
         public void actionPerformed(ActionEvent e){
             if(e.getSource() == about){
-                area.setVisible(false);
+                pnlCurrency.setVisible(false);
+                primary.setVisible(false);
+                pnlTemps.setVisible(false);
+                frame.setTitle("Acerca De");
                 Info info = new Info();
-                info.Info(frame);
+                info.Info(pnlInfo);
             }
             if(e.getSource() == currency){
-                area.setVisible(false);
-                Currency currency  = new Currency();
-                currency.Currency(frame);
+                primary.setVisible(false);
+                pnlTemps.setVisible(false);
+                pnlInfo.setVisible(false);
+                frame.setTitle("Conversor de Moneda");
+                Currency currency = new Currency();
+                currency.Currency(frame, pnlCurrency);
             }
             if(e.getSource() == temps){
-                Info info = new Info();
-                info.Info(frame);
+                pnlCurrency.setVisible(false);
+                primary.setVisible(false);
+                pnlInfo.setVisible(false);
+                frame.setTitle("Conversor de Temperatura");
+                Temps temps = new Temps();
+                temps.Temps(frame, pnlTemps);
             }
         }
     }

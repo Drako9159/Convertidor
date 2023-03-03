@@ -9,28 +9,27 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Currency {
-    JPanel primary, pnlAmount, pnlOptions, actions;
+    JPanel pnlAmount, pnlOptions, actions;
     JTextField amount, result;
     JLabel lblAmount, lblOption0, lblOption1, lblResult;
 
     JButton handleConverter;
     JComboBox box0, box1;
-    public void Currency(JFrame frame){
-        frame.setTitle("Conversor de Moneda");
-
-        primary = new JPanel();
+    public void Currency(JFrame frame, JPanel panel){
 
         pnlAmount = new JPanel();
         pnlAmount.setBounds(0,10,360,40);
         pnlAmount.setLayout(null);
-
         amount = new JTextField();
         amount.setBounds(150,8,120,30);
 
-
         amount.addKeyListener(new KeyAdapter() {
+
             public void keyPressed(KeyEvent e){
-                if(e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == KeyEvent.VK_BACK_SPACE){
+
+                if(e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() == KeyEvent.VK_BACK_SPACE
+                    ||e.getKeyCode() == 46
+                ){
                     amount.setEditable(true);
 
                 } else {
@@ -112,17 +111,13 @@ public class Currency {
         actions.add(lblResult);
         actions.add(result);
 
-        primary.add(pnlAmount);
-        primary.add(pnlOptions);
-        primary.add(actions);
-        primary.setLayout(null);
+        panel.add(pnlAmount);
+        panel.add(pnlOptions);
+        panel.add(actions);
+        panel.setLayout(null);
+        panel.setVisible(true);
+        panel.setBounds(0,0,360,250);
 
-        primary.setVisible(true);
-        primary.setBounds(0,0,360,250);
 
-
-        frame.getContentPane().add(primary);
-        frame.setVisible(true);
-        frame.repaint();
     }
 }

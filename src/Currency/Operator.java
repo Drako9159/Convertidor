@@ -4,7 +4,6 @@ import java.text.DecimalFormat;
 
 public class Operator {
     public String Operator(String from, String to, Double cantidad){
-
         double value1 = Double.parseDouble(libraryValues(from));
         double value2 = Double.parseDouble(libraryValues(to));
         double result = value2 / value1 * cantidad;
@@ -12,7 +11,6 @@ public class Operator {
 
         String formatter = df.format(result) +" "+to;
         return formatter;
-
     }
     public String libraryValues(String moneda){
         String[] values = {"18.11", "1", "0.94", "136.69", "0.84", "1305.68"};

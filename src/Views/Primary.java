@@ -2,10 +2,15 @@ package Views;
 import Currency.Currency;
 import Info.Info;
 import Temps.Temps;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 
 public class Primary extends JFrame{
     JFrame frame;
@@ -16,7 +21,7 @@ public class Primary extends JFrame{
     ListenButton listener;
     public void primary() {
 
-        String path = System.getProperty("user.dir");
+        // String path = System.getProperty("user.dir");
 
         // create frame
         frame = new JFrame();
@@ -29,6 +34,7 @@ public class Primary extends JFrame{
         // options menu
         JMenuBar nav = new JMenuBar();
         menu = new JMenu("Menú");
+
         currency = new JMenuItem("Moneda");
         temps = new JMenuItem("Temperaturas");
         about = new JMenuItem("Acerca De");
@@ -39,9 +45,14 @@ public class Primary extends JFrame{
         frame.setJMenuBar(nav);
 
         // add icon app
-        ImageIcon img = new ImageIcon(path+ "/src/assets/currency.png");
-        // ImageIcon img2 = new ImageIcon(path+ "/src/assets/temps.png");
-        frame.setIconImage(img.getImage());
+        try {
+            URL resource = getClass().getResource("/assets/currency.png");
+            assert resource != null;
+            BufferedImage image = ImageIO.read(resource);
+            frame.setIconImage(image);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // front message
         area = new JTextArea();

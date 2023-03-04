@@ -28,6 +28,10 @@ Está hecho en Java, con la librería Swing.
 
 - Se añadieron validaciones para valores vacios.
 
+### Ejecutable
+
+- Se puede descargar el ejecutable .jar para su explotación aquí [release](https://github.com/Drako9159/Convertidor/releases/tag/1.0)
+
 Este proyecto fue realizado para el Challenge de ALURA by Oracle Dec 2022. ✔
 
 
